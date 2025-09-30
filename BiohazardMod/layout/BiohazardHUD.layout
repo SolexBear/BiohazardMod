@@ -1,0 +1,3 @@
+<layout>
+    <TextWidget name="BiohazardWarning" text="BIOHAZARD ZONE" color="#FF0000" align="center" />
+</layout>

@@ -21,13 +21,19 @@ class ProtectionValidator {
     }
 
     static ItemBase FindItemOnPlayer(PlayerBase player, string itemName) {
-        array<ItemBase> items;
-        player.GetInventory().EnumerateInventory(InventoryTraversalType.PREORDER, items);
-        foreach (ItemBase item : items) {
-            if (item && item.GetType() == itemName) return item;
+    array<EntityAI> items = new array<EntityAI>();
+    player.GetInventory().EnumerateInventory(InventoryTraversalType.PREORDER, items);
+
+    foreach (EntityAI entity : items) {
+        ItemBase item = ItemBase.Cast(entity);
+        if (item && item.GetType() == itemName) {
+            return item;
         }
-        return null;
     }
+
+    return null;
+}
+
 
     static bool HasFilter(ItemBase mask) {
         return mask.FindAttachmentBySlotName("GasMaskFilter") != null;
